@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation for A college student</title>
+    <style>
+       
+           
+        fieldset{
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            width: 350px;
+            text-align: center;
+            border: 5px solid rgb(9, 9, 9);
+            border-radius: 25px;
+            background-image: url(blackback.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend style="font-size: larger;">Student Form</legend>
+    <form id="myform" >
+        <label for="username">Username:</label>
+        <input type="text" id="username" placeholder="Enter Username"><br>
+        <span id="usersp"></span><br>
+        <span id="usercheck"></span>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter Password"><br>
+        <span id="passsp"></span><br>
+        <span id="passcheck"></span>
+        <br>
+        <label for="roll">Roll Number:</label>
+        <input type="text" id="rollnum" placeholder="Enter Roll Number"> <br>
+        <span id="rollsp"></span><br>
+        <span id="rollcheck"></span>
+        <br>
+        <label for="mobile">Mobile Number:</label>
+        <input type="number" id="mobile" placeholder="Enter Mobile Number"><br>
+        <span id="mobilesp"></span>
+        <br>
+        <span id="mobilecheck"></span>
+        <br>
+        <input type="submit">
+        <p id="hh"></p>
+        <p id="result"></p>
+        </fieldset>
+    </form>
+    <script>
+       let myform=document.getElementById("myform");
+       
+       myform.addEventListener("submit",(e)=>{
+        e.preventDefault();
+        let user=document.getElementById("username");
+        let pass=document.getElementById("password");
+        let roll=document.getElementById("rollnum");
+        let mobile=document.getElementById("mobile");
+
+        let result=document.getElementById("result");
+
+        //disclaimer when input field is null
+        let usersp=document.getElementById("usersp");
+        let passsp=document.getElementById("passsp");
+        let rollsp=document.getElementById("rollsp");
+        let mobilesp=document.getElementById("mobilesp");
+
+        let rollcheck=document.getElementById("rollcheck");
+        let mobilecheck=document.getElementById("mobilecheck");
+        let usercheck=document.getElementById("usercheck");
+        let passcheck=document.getElementById("passcheck");
+
+        
+
+        if(user.value==""){
+            user.style.border="2px solid red";
+            usersp.style.color="red"
+            usersp.innerHTML="Fill the Username !";
+            
+        }
+        if(pass.value==""){
+            pass.style.border="2px solid red";
+            passsp.style.color="red";
+            passsp.innerHTML="Fill the Password !"
+        }
+        if(roll.value==""){
+            roll.style.border="2px solid red";
+            rollsp.style.color="red";
+            rollsp.innerHTML="Fill the Roll Number !"
+        }
+        if(mobile.value==""){
+            mobile.style.border="2px solid red";
+            mobilesp.style.color="red";
+            mobilesp.innerHTML="Fill the Mobile Number !"
+        }
+
+        let rollPattern=/^23g21(?=.*[0-9]){8}/;
+        let rollMatched=rollPattern.test(roll.value);
+        if(!(rollMatched) && !(roll.value=="") ){
+           rollcheck.style.color="red";
+           roll.style.border="3px solid red"
+           rollcheck.innerHTML="Enter correct input for mobile! "
+        }
+
+        let mobilePattern=/(?=.*[0-9]){10}/;
+        let mobileMatched= mobilePattern.test(mobile.value);
+        if(!mobileMatched && !(mobile.value=="") && (mobile.value.length<10) && (mobile.value.length>10)){
+            mobilecheck.style.color="red";
+            mobile.style.border="3px solid red";
+            mobilecheck.innerHTML="Enterd Incorrect value"
+
+        }
+
+        let userPattern=/(?=.*[A-Z])(?=.*[a-z])/;
+        let userMatched=userPattern.test(user.value);
+        if(!userMatched && !(user.value=="")){
+            usercheck.style.color="red";
+            user.style.border="3px solid red";
+            usercheck.innerHTML="Entered Incorrect Username";
+
+        }
+        
+
+        let passPattern=/(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]){8}/;
+        let passMatched=passPattern.test(pass.value);
+        if(!passMatched && !(pass.value=="")){
+            passcheck.style.color="red";
+            pass.style.border="3px solid red";
+            passcheck.innerHTML="Enter password Correctly";
+        }
+
+        if(userMatched && passMatched && rollMatched && mobileMatched){
+            result.innerHTML="All inputs oK"
+        }
+
+
+
+        // next test check empty inputs of all the fields
+
+
+        //test
+        // let p=document.getElementById("hh");
+        // p.innerHTML=user;
+       })
+    </script>
+</body>
+</html>
