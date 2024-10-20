@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let theater={
+            movieName:"Saripoda Shanivaaram",
+            screen:"Screen5",
+            b:function (){
+                console.log(`Movie ${this.movieName} is in ${this.screen}`);
+            }
+        }
+        
+        let devara={
+            movieName:"Devara",
+            screen:"screen0",
+
+        }
+        theater.b.call(devara);
+    </script>
+</body>
+</html>
